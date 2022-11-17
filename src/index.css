@@ -11,3 +11,295 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.Navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+}
+
+
+
+.Bar {
+  width: 30px;
+  background-color: greenyellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s;
+
+
+}
+
+.Bars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  transition: all 1s;
+
+
+}
+
+
+.moveLeft {
+  transform: translateX(30px);
+  background-color: aqua;
+}
+
+.moveRight {
+  transform: translateX(-30px);
+  background-color: aqua;
+
+}
+
+
+.redRight {
+  animation: change-background-right 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.redLeft {
+  animation: change-background-left 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.down {
+  transform: translateY(150px);
+  transition: all 1s;
+
+}
+
+.down2 {
+  transform: translateY(151px);
+  transition: all 1s;
+  background-color: brown;
+}
+
+
+.playBtn {
+  width: 30%;
+  height: 10%;
+  background-color: blanchedalmond;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s;
+}
+
+.Menu {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 30px;
+}
+
+.links {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  gap: 50px;
+}
+
+.link {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.helper {
+  width: auto;
+  height: auto;
+  border-radius: 5px;
+  position: absolute;
+  top: 45%;
+  left: 20%;
+  transition: all 1s;
+}
+
+.helpText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.settings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  position: absolute;
+  text-align: center;
+  
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+
+}
+
+.slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: auto;
+  height: 80px;
+  width: 280px;
+  padding: 10px;
+}
+
+.play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  padding: 10px;
+}
+
+.count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 80px;
+  padding: 10px;
+  width: 280px;
+  gap: 10px;
+}
+
+.flex{
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.createBars{
+  background-color: greenyellow;
+}
+
+.restartBtn{
+  transition: all 1s;
+}
+
+.reloadBtn{
+  transition: all 1s;
+}
+
+
+
+.pic {
+  width: 60px;
+  height: 60px;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
+
+
+
+.notransition * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}
+
+.border {
+  border: solid 1px black;
+
+}
+
+
+.creator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 90%;
+  top: 90%;
+  opacity: 0.2;
+}
+
+@keyframes change-background-right {
+  0% {
+    background: greenyellow;
+    transform: translate(0px);
+
+  }
+
+  10% {
+    background: red;
+    transform: translate(10px);
+  }
+
+  60% {
+    transform: translate(20px);
+
+  }
+
+  100% {
+    transform: translate(60px);
+
+  }
+
+}
+
+@keyframes change-background-left {
+  0% {
+    background: greenyellow;
+    transform: translate(0px);
+
+  }
+
+  10% {
+    background: red;
+    transform: translate(-10px);
+  }
+
+  60% {
+    transform: translate(-20px);
+
+
+  }
+
+  100% {
+    transform: translate(-60px);
+
+
+  }
+}
