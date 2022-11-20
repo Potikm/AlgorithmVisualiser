@@ -6,7 +6,7 @@ import Algos from './Algos'
 
 
 
-const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, reload, setReload, setPause, restart }) => {
+const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, reload, setReload, setPause, restart, count }) => {
 
     const [heights, setHeights] = useState([]);
     const [bars, setBars] = useState([]);
@@ -17,10 +17,11 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
 
 
         setPlay(false);
-        document.querySelector(".Bars").style.transform = "none";
+        document.querySelector(".Bars").style.transform = "none";          // misto classy "down" predelat na cisty pohyb pomoci pixelu
 
         document.querySelectorAll(".Bar").forEach((bar) => {
             bar.style.transform = "none";
+            bar.classList.remove("down");
 
         })
 
@@ -59,8 +60,7 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
     }, [heights])
 
 
-
-
+    
 
     useEffect(() => {
 
@@ -79,6 +79,8 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
         if (pause && play && restart) {
             setPause(false);
         }
+        setBars(document.querySelectorAll(".Bar"));
+
 
     }, [restart])
 
@@ -89,7 +91,6 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
 
     useEffect(() => {
 
-        console.log(bars)
         if (alghorithm === "bubble" && play === true) {
             bubble();
         } else if (alghorithm === "selection" && play === true) {
@@ -109,7 +110,7 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
 
 
         setHeights([])
-        for (let i = 0; i < 26; i++) {
+        for (let i = 0; i < count; i++) {
             const num = Math.floor(Math.random() * 100) + 30;
             setHeights(heights => [...heights, num])
 
@@ -121,6 +122,23 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
     }
 
 
+    useEffect(() => {
+        document.querySelector(".Bars").style.transform = "none";          // misto classy "down" predelat na cisty pohyb pomoci pixelu
+
+        document.querySelectorAll(".Bar").forEach((bar) => {
+            bar.style.transform = "none";
+            bar.classList.remove("down");
+ 
+        })
+       spawnBars();
+       setPlay(false);
+       setSorted(false)
+       clearColor();
+       
+    
+    }, [count])
+
+
     const checkForStop = (bars, duplicate) => {
         var same = 0;
 
@@ -129,6 +147,7 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
 
             document.querySelectorAll(".Bar").forEach((bar) => {
                 bar.style.transform = "none";
+                bar.classList.remove("down");
 
             })
             setReload(false);
@@ -198,7 +217,6 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
                     if (document.querySelector(".startStop").className.includes("START")) {
                         while (document.querySelector(".startStop").className.includes("START")) {
                             await wait(+document.querySelector(".timer").innerHTML * 10);
-                            console.log("s");
                         }
                     }
                     bars[j].style.backgroundColor = "red";
@@ -217,7 +235,6 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
                     }
 
 
-                    console.log(document.querySelector(".timer").value)
                     await wait(+document.querySelector(".timer").innerHTML * 10);
                     if (+bars[j].innerHTML > +bars[j + 1].innerHTML) {
                         var temp = bars[j + 1].innerHTML;
@@ -245,7 +262,6 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
                     if (document.querySelector(".startStop").className.includes("START")) {
                         while (document.querySelector(".startStop").className.includes("START")) {
                             await wait(+document.querySelector(".timer").innerHTML * 10);
-                            console.log("s");
                         }
                     }
                     await wait(+document.querySelector(".timer").innerHTML * 10);
@@ -286,7 +302,7 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
                     min = bars[j];
                     index = j;
 
-                    clearColor(null);
+                    clearColor("selection");
                     min.style.backgroundColor = "red";
                     if (document.querySelector(".startStop").className.includes("START")) {
                         while (document.querySelector(".startStop").className.includes("START")) {
@@ -311,7 +327,7 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
                     return;
                 }
                 await wait(+document.querySelector(".timer").innerHTML * 10);
-                clearColor('selection');
+                clearColor('selection2');
 
 
 
@@ -366,7 +382,7 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
             await wait(+document.querySelector(".timer").innerHTML * 10);
 
             bars[i].style.backgroundColor = "burlywood";
-            clearColor(null);
+            clearColor("selection");
 
 
 
@@ -708,7 +724,6 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
                             return;
                         }
                         await wait(+document.querySelector(".timer").innerHTML * 10);
-                        console.log(bars[x], bars[x + 1], bars[x + 2])
                         bars[x].style.backgroundColor = tempColor;
                         bars[x + 1].style.backgroundColor = tempColor;
                         if (bars[x + 2]) {
@@ -829,7 +844,7 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
                     }
 
                     for (let i = 0; i < half; i++) {
-                        bars[i].classList.add("down");
+                        bars[i].style.transform = "translateY(150px)";
                     }
                     if (checkForStop(bars, duplicate)) {
                         return;
@@ -876,6 +891,7 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
 
                 for (let x = 0; x < left.length; x++) {
 
+
                     if (+pivot === +left[x][0]) {
                         if (document.querySelector(".startStop").className.includes("START")) {
                             while (document.querySelector(".startStop").className.includes("START")) {
@@ -885,10 +901,11 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
 
                         for (let j = 0; j < bars.length; j++) {
 
-
                             var rect = bars[j].getBoundingClientRect();
+                            console.log(rect.top)
 
-                            if (+pivot === +bars[j].innerHTML && rect.top > 160) {
+                            if (+pivot === +bars[j].innerHTML && rect.top > 300) {
+                                console.log(rect.top)
                                 bars[j].style.transform = `translate(${posLeft[i] - posLeftAfter[j]}px, 6px)`
                                 bars[j].style.animationFillMode = "forwards";
                                 tempArr.push(bars[j])
@@ -950,7 +967,7 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
 
                     tempColor = color();
                     for (let i = half; i < bars.length; i++) {
-                        bars[i].classList.add("down");
+                        bars[i].style.transform = "translateY(150px)"
                     }
                     if (checkForStop(bars, duplicate)) {
                         return;
@@ -999,7 +1016,7 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
                             }
                             var rect = bars[j].getBoundingClientRect();
 
-                            if (+pivot === +bars[j].innerHTML && rect.top > 160) {
+                            if (+pivot === +bars[j].innerHTML && rect.top > 300) {
                                 bars[j].style.transform = `translate(${posLeft[i] - posLeftAfter[j]}px, 6px)`
                                 bars[j].style.animationFillMode = "forwards";
                                 tempArr.push(bars[j])
@@ -1325,6 +1342,15 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
     const clearColor = (type) => {
 
         if (type === "selection") {
+            for (let i = 0; i < bars.length; i++) {
+                if ( bars[i].style.backgroundColor !== "burlywood") {
+                    bars[i].style.backgroundColor = "greenyellow";
+                }
+
+            }
+        }
+
+        if (type === "selection2") {
             for (let i = 0; i < bars.length; i++) {
                 if (bars[i].style.backgroundColor !== "red" && bars[i].style.backgroundColor !== "burlywood") {
                     bars[i].style.backgroundColor = "greenyellow";

@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 
 
-const Settings = ({ pause, setPause, setTimer, algo, sorted }) => {
+const Settings = ({ pause, setPause, setTimer, setCount, play }) => {
 
     const [range, setRange] = useState(null);
 
@@ -33,9 +33,9 @@ const Settings = ({ pause, setPause, setTimer, algo, sorted }) => {
                 {pause ? <img src={Start} className="icon startStop START" /> : <img src={Stop} className="icon startStop STOP" />}
             </div>
 
-            <div className="count border">
-                <input type="num" placeholder='Enter number of bars' style={{ border: 'none' }} />
-                <button className='createBars'>Create!</button>
+            <div className="count border" style={!play ? {} : {pointerEvents: 'none', opacity: 0.3}}>
+                <input className='inputBars' type="num" placeholder='Enter number of bars' style={{ border: 'none' }} />
+                <button className='createBars'  onClick={() => {{+document.querySelector(".inputBars").value > 3 ? setCount(document.querySelector(".inputBars").value) : alert("length must be 4+")} document.querySelector(".inputBars").value = ""} }>Create!</button>
             </div>
         </div>
     )

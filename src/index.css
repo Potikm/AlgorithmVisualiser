@@ -71,14 +71,11 @@ code {
 .down {
   transform: translateY(150px);
   transition: all 1s;
+  width: 1000px;
 
 }
 
-.down2 {
-  transform: translateY(151px);
-  transition: all 1s;
-  background-color: brown;
-}
+
 
 
 .playBtn {
@@ -194,7 +191,7 @@ code {
   width: 50%;
   height: 50%;
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -208,15 +205,61 @@ code {
   background-color: greenyellow;
 }
 
+
+.underBtns{
+  width: 30%;
+  height: 10%;
+}
+
+
 .restartBtn{
   transition: all 1s;
+  width: 40%;
+  background-color: #00FA9A;
+  
 }
 
 .reloadBtn{
   transition: all 1s;
+  width: 40%;
+  background-color: #DB7009;
 }
 
+.underBtns{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
 
+.row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 50px #ccc;
+  padding: 5px;
+  border-radius: 10px;
+
+}
+
+.row > :first-child {
+  border-left: none;
+}
+
+.row > :last-child {
+  border-right: none;
+}
+
+.algo{
+  border-top: none;
+  border-bottom: none;
+
+}
+
+.algo:hover{
+  cursor: pointer;
+}
 
 .pic {
   width: 60px;
@@ -229,6 +272,25 @@ code {
 }
 
 
+.vertical{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  gap: 20px;
+}
+
+.homeBtn{
+  position: absolute;
+  width: auto;
+  height: auto;
+  box-shadow: 5 5 50px #ccc;
+  border: none;
+  left: 10%;
+  top: 3%;
+  border-radius: 10px;
+}
 
 
 .notransition * {
