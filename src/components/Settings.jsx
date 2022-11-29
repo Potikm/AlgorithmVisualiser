@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 
 
-const Settings = ({ pause, setPause, setTimer, setCount, play }) => {
+const Settings = ({ pause, setPause, setTimer, setCount, play, sorted }) => {
 
     const [range, setRange] = useState(null);
 
@@ -30,7 +30,7 @@ const Settings = ({ pause, setPause, setTimer, setCount, play }) => {
             </div>
 
             <div className="play border" onClick={() => setPause(!pause)}>
-                {pause ? <img src={Start} className="icon startStop START" /> : <img src={Stop} className="icon startStop STOP" />}
+                {pause && !sorted ? <img src={Start} className="icon startStop START" /> : <img src={Stop} className="icon startStop STOP" />}
             </div>
 
             <div className="count border" style={!play ? {} : {pointerEvents: 'none', opacity: 0.3}}>

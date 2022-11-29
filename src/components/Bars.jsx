@@ -17,8 +17,7 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
 
 
         setPlay(false);
-        document.querySelector(".Bars").style.transform = "none";          // misto classy "down" predelat na cisty pohyb pomoci pixelu
-
+        document.querySelector(".Bars").style.transform = "none";          
         document.querySelectorAll(".Bar").forEach((bar) => {
             bar.style.transform = "none";
             bar.classList.remove("down");

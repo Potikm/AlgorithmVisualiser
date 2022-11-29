@@ -1,0 +1,114 @@
+*{
+    transition: all 0.5s;
+}
+
+
+
+.pathFinder {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 50px #ccc;
+    padding: 5px;
+    border-radius: 10px;
+
+}
+
+.Grid {
+    display: grid;
+    grid-template-columns: repeat(60, auto);
+    grid-template-rows: auto auto;
+    
+    
+   
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 1px;
+}
+
+.node {
+    width: 15px;
+    height: 15px;
+    background-color: gainsboro;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nodeBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 50px #ccc;
+    padding: 5px;
+    gap: 30px;
+    border-radius: 10px;
+}
+
+.buttons{
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 80px;
+    height: 50px;
+    box-shadow: 5 5 50px #ccc;
+    border: none;
+    border-radius: 10px;
+}
+
+.visualiseBtn{
+    background-color: blanchedalmond;
+    width: 110px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.startNode {
+    background-color: green;
+}
+
+.finalNode {
+    background-color: red;
+}
+
+.visited {
+    background-color: blue;
+}
+
+.path {
+    background-color: yellowgreen;
+}
+
+.wall {
+    background-color: black;
+}
+
+.loader-active {
+    max-width: 50px;
+    width: 20px;
+    height: 20px;
+    color: red;
+}

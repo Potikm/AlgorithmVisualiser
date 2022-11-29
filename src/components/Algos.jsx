@@ -74,20 +74,17 @@ const Algos = () => {
 
 
         if (play && !sorted && document.querySelector(".playBtn")) {
-            console.log(play, sorted)
             document.querySelector(".playBtn").style.backgroundColor = "green"
             document.querySelector(".playBtn").style.pointerEvents = "none"
         }
 
         if (!play && !sorted && document.querySelector(".playBtn")) {
-            console.log(play, sorted)
             document.querySelector(".playBtn").style.backgroundColor = "blanchedalmond"
             document.querySelector(".playBtn").style.pointerEvents = "auto"
 
         }
 
         if (sorted && document.querySelector(".playBtn")) {
-            console.log(play, sorted)
             document.querySelector(".playBtn").style.backgroundColor = "greenyellow"
             document.querySelector(".playBtn").style.pointerEvents = "none"
 
