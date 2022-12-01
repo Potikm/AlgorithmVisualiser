@@ -2,6 +2,8 @@ import React from 'react'
 import Sort from './img/sort.png'
 import Path from './img/path.png'
 import { Link } from 'react-router-dom'
+import DSA from './img/folder.png'
+
 
 const Menu = () => {
     return (
@@ -20,6 +22,11 @@ const Menu = () => {
 
                 <Link to={'Alghorithms'} style={{textDecoration: 'none'}}>
                     <button className='link'><img src={Sort} className="pic" alt="" /><p>Sorting</p></button>
+
+                </Link>
+
+                <Link to={'DSA'} style={{textDecoration: 'none'}}>
+                    <button className='link'><img src={DSA} className="pic" alt="" /><p>Data <br /> Structures</p></button>
 
                 </Link>
             </div>

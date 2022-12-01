@@ -3,6 +3,8 @@ import Algos from './components/Algos';
 import { HashRouter, Routes, Route } from "react-router-dom";
 import PathFinder from './components/Path_finder/PathFinder';
 import Menu from './components/Menu';
+import DSA from './components/DSA/DSA';
+
 
 function App() {
 
@@ -25,6 +27,7 @@ function App() {
           <Route path='/' element={<Menu />}></Route>
           <Route path='/Alghorithms' element={<Algos />}></Route>
           <Route path='/Path_Finder' element={<PathFinder />}></Route>
+          <Route path='/DSA' element={<DSA />}></Route>
 
         </Routes>
 
