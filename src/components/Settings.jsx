@@ -22,7 +22,7 @@ const Settings = ({ pause, setPause, setTimer, setCount, play, sorted }) => {
                 <img src={Rabbit} alt="" className='icon' />
                 <div className="">
                     <p className='timer'>{range}</p>
-                    <input type="range" className='range' min={10} max={120} onChange={(event) => { setRange(event.target.value); setTimer(event.target.value * 10) }} />
+                    <input type="range" className='range' min={10} max={100} onChange={(event) => { setRange(event.target.value); setTimer(event.target.value * 10) }} />
 
                 </div>
 

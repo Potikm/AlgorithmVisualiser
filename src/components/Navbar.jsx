@@ -10,7 +10,7 @@ const Navbar = ({setAlgo}) => {
             <div onClick={() => setAlgo('insertion')} className='col-sm algo'>Insertion <br /> Sort</div>
             <div onClick={() => setAlgo('merge')} className='col-sm algo'>Merge <br /> Sort</div>
             <div onClick={() => setAlgo('quick')} className='col-sm algo'>Quick <br /> Sort</div>
-           
+            <div onClick={() => setAlgo('merge2')} className='col-sm algo'>Merge 2 <br /> </div>
 
         </div>
         </div>

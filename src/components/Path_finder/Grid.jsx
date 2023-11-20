@@ -6,6 +6,7 @@ import Loader from 'react-loaders'
 import Feedback from 'react-bootstrap/esm/Feedback';
 import Settings from './Settings';
 import { clear } from '@testing-library/user-event/dist/clear';
+import Navbar from './Navbar';
 
 const Grid = () => {
 
@@ -13,7 +14,7 @@ const Grid = () => {
   const [nodes, setNodes] = useState([]);
   const prevStartNode = useRef(null);
   const prevFinalNode = useRef(null);
-
+  const [algo, setAlgo] = useState("");
   const [node, setNode] = useState(null);
   const [wall, setWall] = useState(null);
   const [visualizing, setVisualising] = useState(false);
@@ -57,6 +58,9 @@ const Grid = () => {
 
 
 
+  useEffect(() => { 
+     console.log(algo)
+  }, [algo])
 
   useEffect(() => {                                            // logic for startNode, finalNode and wall when is clicked on Node            
 
@@ -189,20 +193,16 @@ const Grid = () => {
     const nodes = document.querySelectorAll(".node")
 
     nodes.forEach((node) => {
-      if (!node.parentElement.classList.contains("button")) {
-        node.classList.forEach((classa) => {
-         
-
-          if (+classa >= 0){
-            node.classList.remove(classa, "visited", "startNode", "wall", "finalNode", "path");
-          }else{
-            node.classList.remove("visited", "startNode", "wall", "finalNode", "path");
-
-          }
-        })
+      node.classList.forEach((classa) => {
+        node.style.backgroundColor = "";
+        if (+classa >= 0){
+          node.classList.remove(classa, "visited", "startNode", "wall", "finalNode", "path", "visited", "left", "right", "top", "bottom", "hCost", "used");
        
-       
-      }
+        }else{
+          node.classList.remove("visited", "startNode", "wall", "finalNode", "path", "visited", "left", "right", "top", "bottom", "hCost", "used");
+
+        }
+      })
     })
 
 
@@ -219,6 +219,321 @@ const Grid = () => {
 
 
   }
+
+
+  async function aSearch(){
+   
+    var unvisitedNodes = [];
+    unvisitedNodes.push(startNode);
+
+    const final = finalNode.id;
+    console.log(final);
+    var fCost = 0;
+
+    await checkHcost();
+    //startNode.classList.remove("startNode")
+    var id = unvisitedNodes[0].id
+    while (unvisitedNodes.length) {
+      
+      document.getElementById(id).classList.add("used");
+      document.getElementById(id).classList.add("visited");
+      document.getElementById(id).style.backgroundColor = "red";
+
+      if (document.querySelector(".restartBtn").innerHTML === "Restarting") {
+        clearBoard();
+        break;
+      }
+
+      if (isNodeValid(id, "top") && isClassValid(id - 60)) {  // top
+        if (isTarget(id - 60)) {
+          document.getElementById(id - 60).classList.add('top');
+          showPathASearch(id - 60);
+          break;
+        }
+        document.getElementById(id - 60).classList.add('visited');
+        document.getElementById(id - 60).classList.add('top');
+        var distance = document.getElementById(id - 60).className.replace(/[^\d.-]/g, '');
+
+
+        const updatedClass = document.getElementById(id - 60).className.replace(/\d+/g, '');
+        document.getElementById(id - 60).setAttribute('class', updatedClass);
+        document.getElementById(id - 60).lang = distance;
+        document.getElementById(id - 60).classList.add(+distance + 1);
+
+  
+        unvisitedNodes.push(document.getElementById(id - 60));
+        await wait(10);
+      }
+
+
+      if (isNodeValid(id, "left") && isClassValid(id - 1)) {  // left
+        if (isTarget(id - 1)) {
+          document.getElementById(id - 1).classList.add('left');
+          showPathASearch(id - 1);
+          break;
+        }
+        document.getElementById(id - 1).classList.add('visited');
+        document.getElementById(id - 1).classList.add('left');
+        var distance = document.getElementById(id - 1).className.replace(/[^\d.-]/g, '');
+
+
+        const updatedClass = document.getElementById(id - 1).className.replace(/\d+/g, '');
+        document.getElementById(id - 1).setAttribute('class', updatedClass);
+        document.getElementById(id - 1).lang = distance;
+      
+        document.getElementById(id - 1).classList.add(+distance + 1);
+   
+        unvisitedNodes.push(document.getElementById(id - 1));
+        await wait(10);
+      }
+
+
+      if (isNodeValid(id, "right") && isClassValid(+id + 1)) {  // right
+        if (isTarget(+id + 1)) {
+          document.getElementById(+id + 1).classList.add('right');
+          showPathASearch(+id + 1);
+          break;
+        }
+        document.getElementById(+id + 1).classList.add('visited');
+        document.getElementById(+id + 1).classList.add('right');
+        var distance = document.getElementById(+id + 1).className.replace(/[^\d.-]/g, '');
+      
+        
+    
+        const updatedClass = document.getElementById(+id + 1).className.replace(/\d+/g, '');
+        document.getElementById(+id + 1).setAttribute('class', updatedClass);
+        document.getElementById(+id + 1).lang = distance;
+
+        document.getElementById(+id + 1).classList.add(+distance + 1);
+        
+        unvisitedNodes.push(document.getElementById(+id + 1));
+        await wait(10);
+      }
+
+
+      if (isNodeValid(id, "bottom") && isClassValid(+id + 60)) {  // bottom
+        if (isTarget(+id + 60)) {
+          document.getElementById(+id + 60).classList.add('bottom');
+          showPathASearch(+id + 60);
+          break;
+        }
+
+        document.getElementById(+id + 60).classList.add('visited');
+        document.getElementById(+id + 60).classList.add('bottom');
+        var distance = document.getElementById(+id + 60).className.replace(/[^\d.-]/g, '');
+
+
+        const updatedClass = document.getElementById(+id + 60).className.replace(/\d+/g, '');
+        document.getElementById(+id + 60).setAttribute('class', updatedClass);
+        document.getElementById(+id + 60).lang = distance;
+      
+        document.getElementById(+id + 60).classList.add(+distance + 1);
+     
+        unvisitedNodes.push(document.getElementById(+id + 60));
+        await wait(10);
+      }
+      if (unvisitedNodes[0].className.includes("startNode")){
+        unvisitedNodes.shift();
+      }
+      
+      if (document.querySelector(".restartBtn").innerHTML === "Restarting") {
+        clearBoard();
+        break;
+      }
+      await wait(100);
+  
+     
+      var cost = 0;
+      var cell;
+      unvisitedNodes.forEach((x) => {
+       
+      
+
+        if (cost === 0) {
+          if (x.classList.contains("used")){
+            return;
+          }else{
+            cost = x.className.replace(/[^\d.-]/g, '');
+            cell = x;
+          }
+         
+          return;
+          
+         
+        }
+      
+
+        if (+cost >= +x.className.replace(/[^\d.-]/g, '') ){
+          if (x.classList.contains("used")){
+            return
+          }else{
+
+            cost = +x.className.replace(/[^\d.-]/g, '');
+            cell = x;
+          }
+
+       
+        }
+          
+        
+     
+      })
+      console.log(cell);
+      id = cell.id;
+      
+      
+    }
+   
+  
+  }
+
+
+
+
+  async function showPathASearch(id) {
+
+    var path = [document.getElementById(id)];
+    let smallestNode = null;
+    var temp = [];
+
+    while (!path[path.length - 1].classList.contains("startNode")) {
+      console.log(path);
+      id = path.at(-1).id;
+      temp = [];
+    
+      if (document.getElementById(id).classList.contains("top")){
+        path.push(document.getElementById(+id + 60));
+        continue;
+      }
+
+      if (document.getElementById(id).classList.contains("left")){
+        path.push(document.getElementById(+id + 1));
+        continue;
+      }
+
+      if (document.getElementById(id).classList.contains("right")){
+        path.push(document.getElementById(id - 1));
+        continue;
+      }
+
+      if (document.getElementById(id).classList.contains("bottom")){
+        path.push(document.getElementById(id - 60));
+        continue;
+      }
+
+
+
+
+      console.log("check")
+
+
+
+
+
+      
+
+
+  
+    }
+
+
+    console.log(path);
+    for (let i = 0; i < path.length; i++) {
+     
+      path[i].style.backgroundColor = "";
+      path[i].classList.add("path")
+      
+      await wait(10);
+    }
+    setVisualising(false);
+    setVisualised(true);
+
+
+  }
+
+
+
+  async function checkHcost(){
+   
+    var unvisitedNodes = [];
+    unvisitedNodes.push(finalNode);
+
+    finalNode.classList.add(0)
+    //startNode.classList.remove("startNode")
+
+
+    while (unvisitedNodes.length) {
+      const id = unvisitedNodes[0].id
+
+      if (isNodeValid(id, "top") && isClassValidHCost(id - 60)) {  // top
+  
+        document.getElementById(id - 60).classList.add('hCost');
+        var distance = document.getElementById(id).className.replace(/[^\d.-]/g, '');
+        console.log(distance);
+        document.getElementById(id - 60).classList.add(+distance + 1);
+        unvisitedNodes.push(document.getElementById(id - 60));
+     
+      }
+      if (isNodeValid(id, "left") && isClassValidHCost(id - 1)) {   // left
+    
+        document.getElementById(id - 1).classList.add('hCost');
+        var distance = document.getElementById(id).className.replace(/[^\d.-]/g, '');
+        document.getElementById(id - 1).classList.add(+distance + 1);
+        unvisitedNodes.push(document.getElementById(id - 1));
+    
+      }
+      if (isNodeValid(id, "right") && isClassValidHCost(+id + 1)) {  // right
+
+        document.getElementById(+id + 1).classList.add('hCost');
+        var distance = document.getElementById(+id).className.replace(/[^\d.-]/g, '');
+        document.getElementById(+id + 1).classList.add(+distance + 1);
+        unvisitedNodes.push(document.getElementById(+id + 1));
+  
+      }
+      if (isNodeValid(id, "bottom") && isClassValidHCost(+id + 60)) {  // down
+
+        document.getElementById(+id + 60).classList.add('hCost');
+        var distance = document.getElementById(+id).className.replace(/[^\d.-]/g, '');
+        document.getElementById(+id + 60).classList.add(+distance + 1);
+        unvisitedNodes.push(document.getElementById(+id + 60));
+        
+      }
+    
+   
+      unvisitedNodes.shift();
+      if (unvisitedNodes.length === 0){
+        break;
+      }
+
+    }
+  }
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -296,7 +611,7 @@ const Grid = () => {
         break;
       }
 
-
+      console.log(unvisitedNodes)
       unvisitedNodes.shift();
       if (unvisitedNodes.length === 0) {
         setVisualising(false);
@@ -305,6 +620,8 @@ const Grid = () => {
     }
 
   }
+
+
 
 
 
@@ -348,7 +665,7 @@ const Grid = () => {
 
       }
 
-
+      console.log("check")
 
       if (temp.length === 1) {
 
@@ -389,6 +706,15 @@ const Grid = () => {
   }
 
 
+  function isClassValidHCost(id) {
+    const node = document.getElementById(id);
+
+    if (node.classList.contains("hCost")) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
 
   function isClassValid(id) {
@@ -453,14 +779,16 @@ const Grid = () => {
 
   return (
     <div className="pathFinder">
-
+       
+      <Navbar setAlgo={setAlgo}/> 
       <div className="nodeBtn">
         <button className='button' id='btnStart' onClick={() => {setChoosingFinal(false);setChoosingWall(false) }}>Start <div className="node startNode"></div></button>
         <button className='button' id='btnFinal' onClick={() => {setChoosingFinal(true);setChoosingWall(false) }}>Target <div className="node finalNode"></div></button>
         <button className='button' id='btnWall' onClick={() => {setChoosingWall(true); setChoosingFinal(false)}}>Wall <div className="node wall"></div></button>
       </div>
+      <div className='algoName'>Algo: <div className='text'>{algo}</div></div>
       <div className='Grid'>
-
+      
         {nodes.map((node) => {
           return node
         })}
@@ -470,7 +798,7 @@ const Grid = () => {
 
       </div>
       <div className="buttons">
-        <Settings dijkstra={dijkstra} setVisualising={setVisualising} clearBoard={clearBoard} btnText={btnText} setBtnText={setBtnText} setRestart={setRestart} startNode={startNode} visualised={visualised} visualizing={visualizing} />
+        <Settings algo={algo} dijkstra={dijkstra} aSearch={aSearch} setVisualising={setVisualising} clearBoard={clearBoard} btnText={btnText} setBtnText={setBtnText} setRestart={setRestart} startNode={startNode} visualised={visualised} visualizing={visualizing} />
 
       </div>
 

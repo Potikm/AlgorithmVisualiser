@@ -13,7 +13,6 @@ import HomeButton from './HomeButton';
 
 
 
-
 const Algos = () => {
 
     const [alghorithm, setAlghorithm] = useState('');

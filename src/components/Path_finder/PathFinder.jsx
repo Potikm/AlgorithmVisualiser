@@ -8,7 +8,6 @@ const PathFinder = () => {
   return (
     <div className='pathFinder'>
       <HomeButton />
-      <NavBar />
       <Grid />
     </div>
   )

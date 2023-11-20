@@ -21,6 +21,12 @@ code {
 
 }
 
+.Navbar2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
 
 
 .Bar {
@@ -43,6 +49,23 @@ code {
   transition: all 1s;
 
 
+}
+
+.algoName{
+  position: absolute;
+  top: 20%;
+  left: 20%;  
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.used{
+  background-color: red;
+  color: red;
 }
 
 
@@ -279,6 +302,10 @@ code {
   align-items: center;
   padding-top: 20px;
   gap: 20px;
+}
+
+.text{
+  font-size: 30px;
 }
 
 .homeBtn{

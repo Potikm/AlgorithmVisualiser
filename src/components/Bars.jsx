@@ -100,6 +100,8 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
             merge()
         } else if (alghorithm === "quick" && play === true) {
             quick();
+        } else if (alghorithm === "merge2" && play === true) {
+            merge2();
         }
 
 
@@ -1315,6 +1317,93 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
 
             i++;
         }
+        setSorted(true);
+        setPlay(false);
+    }
+
+
+
+
+    const merge2 = async () => {
+
+        var left = [];
+        var right = [];
+        var posLeft = [];
+        var posTop = [];
+        var posLeftAfter = [];
+        var doubler = 1;
+    
+        var tempColor1 = color();   
+        var tempColor2 = color();
+        
+
+
+
+
+        do {
+            doubler = doubler * 2;
+            for (let x = 0; x < bars.length; x++){
+          
+                for (let z = 0; z < doubler; z++){
+                    if (bars[x + z]){
+                        bars[x + z].style.backgroundColor = tempColor1;
+                        console.log(bars[z])
+                    }
+                 
+                }
+                console.log(x);
+                tempColor1 = color();
+                x = x + doubler - 1;
+                await wait(+document.querySelector(".timer").innerHTML * 10);
+            }
+            for (let i = 0; i < bars.length; i++){
+
+                var tempArr = [];
+                var color5 = bars[i].style.backgroundColor;
+                var x = 0;
+                while (bars[i + x].style.backgroundColor === color5){
+                    tempArr.push(bars[x + i]);
+                   
+                    x++;
+                    if (!bars[x + i]){
+                        break;
+                    }
+                }
+               
+                console.log(tempArr);
+                for (let x = 0; x < tempArr.length; x++){
+                    var bar = tempArr[x];
+                    for (let y = x + 1; y < tempArr.length; y++){
+                        if (+bar.innerHTML > +tempArr[y].innerHTML){
+                            bar = tempArr[y];
+                        }
+                    }
+                    tempArr[x].style.backgroundColor = "red";
+                    bar.style.backgroundColor = "red";
+                    await wait(+document.querySelector(".timer").innerHTML * 10);
+                    if (tempArr[x] !== bar){
+                        console.log(bar, tempArr[x]);
+                        var temp = bar.innerHTML;
+              
+                        bar.style.height = tempArr[x].innerHTML + "px";
+                        bar.innerHTML = tempArr[x].innerHTML;
+
+                        tempArr[x].style.height = temp + "px";
+                        tempArr[x].innerHTML = temp;
+                    }
+                    await wait(+document.querySelector(".timer").innerHTML * 10);
+                    tempArr[x].style.backgroundColor = color5;
+                    bar.style.backgroundColor = color5;
+               
+                }
+                i = i + x - 1;
+                
+         
+            }
+           
+        } while (doubler < bars.length);
+        
+       
         setSorted(true);
         setPlay(false);
     }
