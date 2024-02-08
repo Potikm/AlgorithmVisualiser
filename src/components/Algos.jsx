@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Helper from './Helper';
 import Settings from './Settings';
 import HomeButton from './HomeButton';
+import InfoText from './InfoText';
 
 
 
@@ -114,6 +115,7 @@ const Algos = () => {
                 {alghorithm === "" ? null : <div className='underBtns'><button className='restartBtn' style={play || sorted ? {} : { pointerEvents: 'none', opacity: '0.3' }} onClick={() => setRestart(true)}>{restartText}</button> <button className='reloadBtn' onClick={() => setReload(true)}>{btnText}</button> </div>}
             </div>
             <Helper type={alghorithm} />
+            <InfoText type={alghorithm} />
 
             <Settings pause={pause} setPause={setPause} setTimer={setTimer} algo={alghorithm} play={play} sorted={sorted} setCount={setCount} />
 

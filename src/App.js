@@ -27,7 +27,7 @@ function App() {
           <Route path='/' element={<Menu />}></Route>
           <Route path='/Alghorithms' element={<Algos />}></Route>
           <Route path='/Path_Finder' element={<PathFinder />}></Route>
-          <Route path='/DSA' element={<DSA />}></Route>
+        
 
         </Routes>
 

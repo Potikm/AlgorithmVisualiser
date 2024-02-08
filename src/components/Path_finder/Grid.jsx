@@ -7,6 +7,7 @@ import Feedback from 'react-bootstrap/esm/Feedback';
 import Settings from './Settings';
 import { clear } from '@testing-library/user-event/dist/clear';
 import Navbar from './Navbar';
+import Dijkstra2 from './Dijkstra2';
 
 const Grid = () => {
 
@@ -26,7 +27,8 @@ const Grid = () => {
   const [visualised, setVisualised] = useState(false);
   const [restart, setRestart] = useState(false);
   const [btnText, setBtnText] = useState("Restart")
-
+  const [startNode2, setStartNode2] = useState("");
+  const [endNode, setEndNode] = useState("");
 
   useEffect(() => {
     setNodes([]);
@@ -197,10 +199,12 @@ const Grid = () => {
         node.style.backgroundColor = "";
         if (+classa >= 0){
           node.classList.remove(classa, "visited", "startNode", "wall", "finalNode", "path", "visited", "left", "right", "top", "bottom", "hCost", "used");
-       
+          setStartNode2("");
+          setEndNode("");
         }else{
           node.classList.remove("visited", "startNode", "wall", "finalNode", "path", "visited", "left", "right", "top", "bottom", "hCost", "used");
-
+          setStartNode2("");
+          setEndNode("");
         }
       })
     })
@@ -780,27 +784,48 @@ const Grid = () => {
   return (
     <div className="pathFinder">
        
-      <Navbar setAlgo={setAlgo}/> 
-      <div className="nodeBtn">
-        <button className='button' id='btnStart' onClick={() => {setChoosingFinal(false);setChoosingWall(false) }}>Start <div className="node startNode"></div></button>
-        <button className='button' id='btnFinal' onClick={() => {setChoosingFinal(true);setChoosingWall(false) }}>Target <div className="node finalNode"></div></button>
-        <button className='button' id='btnWall' onClick={() => {setChoosingWall(true); setChoosingFinal(false)}}>Wall <div className="node wall"></div></button>
-      </div>
+      <Navbar setAlgo={setAlgo} clearBoard={clearBoard}/> 
+      {algo !== "Dijkstra 2" ?
+       <div className="nodeBtn">
+         <button className='button' id='btnStart' onClick={() => {setChoosingFinal(false);setChoosingWall(false) }}>Start <div className="node startNode"></div></button>
+         <button className='button' id='btnFinal' onClick={() => {setChoosingFinal(true);setChoosingWall(false) }}>Target <div className="node finalNode"></div></button>
+         <button className='button' id='btnWall' onClick={() => {setChoosingWall(true); setChoosingFinal(false)}}>Wall <div className="node wall"></div></button>
+       </div>
+      :
+       <div className="Input">
+        <label htmlFor="">Z uzlu </label>
+        <input style={{width: "40px", textTransform: "uppercase"}} type="text" onChange={(e) => setStartNode2(e.target.value)}/>
+        <label htmlFor=""> do uzlu </label>
+        <input style={{width: "40px", textTransform: "uppercase"}} type="text" onChange={(e) => setEndNode(e.target.value)}/>
+       </div>
+      }
+     
+
       <div className='algoName'>Algo: <div className='text'>{algo}</div></div>
+
+      {algo !== "Dijkstra 2" ? 
+      
       <div className='Grid'>
       
         {nodes.map((node) => {
           return node
-        })}
+       })}
 
 
+       </div> 
+       : 
+      <Dijkstra2 startNodeId={startNode2} endNode={endNode}/>}
+      
 
+      {algo !== "Dijkstra 2" ?
+       <div className="buttons">
+       <Settings algo={algo} dijkstra={dijkstra} aSearch={aSearch} setVisualising={setVisualising} clearBoard={clearBoard} btnText={btnText} setBtnText={setBtnText} setRestart={setRestart} startNode={startNode} visualised={visualised} visualizing={visualizing}/>
 
-      </div>
-      <div className="buttons">
-        <Settings algo={algo} dijkstra={dijkstra} aSearch={aSearch} setVisualising={setVisualising} clearBoard={clearBoard} btnText={btnText} setBtnText={setBtnText} setRestart={setRestart} startNode={startNode} visualised={visualised} visualizing={visualizing} />
-
-      </div>
+       </div>
+      :
+      null
+      }
+     
 
     </div>
   )

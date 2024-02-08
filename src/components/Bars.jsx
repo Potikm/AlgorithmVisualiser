@@ -1361,6 +1361,8 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
                 var tempArr = [];
                 var color5 = bars[i].style.backgroundColor;
                 var x = 0;
+
+                
                 while (bars[i + x].style.backgroundColor === color5){
                     tempArr.push(bars[x + i]);
                    

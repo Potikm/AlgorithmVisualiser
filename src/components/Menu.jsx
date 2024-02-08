@@ -25,10 +25,7 @@ const Menu = () => {
 
                 </Link>
 
-                <Link to={'DSA'} style={{textDecoration: 'none'}}>
-                    <button className='link'><img src={DSA} className="pic" alt="" /><p>Data <br /> Structures</p></button>
-
-                </Link>
+            
             </div>
         </div>
     )

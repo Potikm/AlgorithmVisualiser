@@ -21,6 +21,7 @@ code {
 
 }
 
+
 .Navbar2{
   display: flex;
   justify-content: center;
@@ -161,6 +162,25 @@ code {
   align-items: center;
   text-align: center;
   gap: 10px;
+}
+
+.helpText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  border-bottom: solid red 1px;
+}
+
+.infoText{
+  width: auto;
+  height: auto;
+  border-radius: 5px;
+  position: absolute;
+  top: 45%;
+  left: 80%;
+  transition: all 1s;
 }
 
 .settings {
@@ -404,3 +424,87 @@ code {
     text-align: center;
     flex-direction: column;
 }
+
+.Dijkstra2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 200px;
+  height: 500px;
+  width: 150%;
+  gap: 50px;
+  
+  
+  
+}
+
+.knowColumn{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+ 
+}
+
+.Knot{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 0;
+  
+}
+
+.linex{
+  height: 2px;
+  width: 200px;
+  background-color: black;
+  display: flex;
+  justify-content: center;   
+  align-items: center; 
+ 
+}
+.idText{
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  margin: 0;
+}
+
+.liney{
+  height: 200px;
+  width: 2px;
+  background-color: black;
+  display: flex;
+  justify-content: center;   
+  align-items: center; 
+ 
+}
+
+.lines{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  
+
+
+}
+
+.Input{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+
