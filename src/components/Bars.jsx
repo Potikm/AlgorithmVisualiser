@@ -100,7 +100,7 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
             merge()
         } else if (alghorithm === "quick" && play === true) {
             quick();
-        } else if (alghorithm === "merge2" && play === true) {
+        } else if (alghorithm === "merge (outer)" && play === true) {
             merge2();
         }
 
@@ -237,6 +237,7 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
 
 
                     await wait(+document.querySelector(".timer").innerHTML * 10);
+                    
                     if (+bars[j].innerHTML > +bars[j + 1].innerHTML) {
                         var temp = bars[j + 1].innerHTML;
 
@@ -1332,7 +1333,7 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
         var posTop = [];
         var posLeftAfter = [];
         var doubler = 1;
-    
+        var duplicate = bars;
         var tempColor1 = color();   
         var tempColor2 = color();
         
@@ -1351,13 +1352,25 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
                     }
                  
                 }
-                console.log(x);
+                if (checkForStop(bars, duplicate)) {
+                    return;
+                }
+            
                 tempColor1 = color();
                 x = x + doubler - 1;
                 await wait(+document.querySelector(".timer").innerHTML * 10);
+                if (document.querySelector(".startStop").className.includes("START")) {
+                    while (document.querySelector(".startStop").className.includes("START")) {
+                        await wait(+document.querySelector(".timer").innerHTML * 10);
+                    }
+                }
             }
             for (let i = 0; i < bars.length; i++){
-
+                if (document.querySelector(".startStop").className.includes("START")) {
+                    while (document.querySelector(".startStop").className.includes("START")) {
+                        await wait(+document.querySelector(".timer").innerHTML * 10);
+                    }
+                }
                 var tempArr = [];
                 var color5 = bars[i].style.backgroundColor;
                 var x = 0;
@@ -1374,6 +1387,9 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
                
                 console.log(tempArr);
                 for (let x = 0; x < tempArr.length; x++){
+                    if (checkForStop(bars, duplicate)) {
+                        return;
+                    }
                     var bar = tempArr[x];
                     for (let y = x + 1; y < tempArr.length; y++){
                         if (+bar.innerHTML > +tempArr[y].innerHTML){
@@ -1402,7 +1418,14 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
                 
          
             }
-           
+            if (checkForStop(bars, duplicate)) {
+                return;
+            }
+            if (document.querySelector(".startStop").className.includes("START")) {
+                while (document.querySelector(".startStop").className.includes("START")) {
+                    await wait(+document.querySelector(".timer").innerHTML * 10);
+                }
+            }
         } while (doubler < bars.length);
         
        
@@ -1470,7 +1493,7 @@ const Bars = ({ alghorithm, play, setPlay, pause, timer, setSorted, setRestart, 
 
 
 
-
+      
 
 
 

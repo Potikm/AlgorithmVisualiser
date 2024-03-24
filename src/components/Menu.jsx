@@ -8,8 +8,8 @@ import DSA from './img/folder.png'
 const Menu = () => {
     return (
         <div className='Menu'>
-            <h1>Visualise algorithms</h1>
-            <p>keep it simple 😉</p>
+            <h1>Vizualizace algoritmů</h1>
+         
 
 
 
@@ -17,11 +17,11 @@ const Menu = () => {
 
 
                 <Link to={'Path_finder'} style={{textDecoration: 'none'}}>
-                    <button className='link'><img src={Path} className='pic' alt="" /><p>Path <br />Finder</p></button>
+                    <button className='link'><img src={Path} className='pic' alt="" /><p>Vyhledávací <br />Algoritmy</p></button>
                 </Link>
 
                 <Link to={'Alghorithms'} style={{textDecoration: 'none'}}>
-                    <button className='link'><img src={Sort} className="pic" alt="" /><p>Sorting</p></button>
+                    <button className='link'><img src={Sort} className="pic" alt="" /><p>Řadící <br />Algoritmy </p></button>
 
                 </Link>
 

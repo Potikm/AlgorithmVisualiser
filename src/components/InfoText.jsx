@@ -7,7 +7,7 @@ const InfoText = ( {type} ) => {
     <div className='infoText'>
         {type === "bubble" ?
         <div className="helpText">
-            <p>Časová složitost: O(n2)</p>
+            <p>Časová složitost: O(n^2)</p>
            
         </div>
         :
@@ -15,7 +15,7 @@ const InfoText = ( {type} ) => {
 
         {type === "selection" ?
         <div className="helpText">
-            <p>Časová složitost: O(n2)</p>
+            <p>Časová složitost: O(n^2)</p>
            
         </div>
         :
@@ -23,7 +23,7 @@ const InfoText = ( {type} ) => {
 
         {type === "insertion" ?
         <div className="helpText">
-            <p>Časová složitost: O(n2)</p>
+            <p>Časová složitost: O(n^2)</p>
            
         </div>
         :

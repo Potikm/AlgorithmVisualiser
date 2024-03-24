@@ -10,10 +10,10 @@ const Settings = ({ algo, dijkstra, aSearch, setVisualising, startNode, visualis
         <div className='buttons'>
             <button className='visualiseBtn'
                 style={startNode && !visualised && algo != "" ? {} : { pointerEvents: 'none', opacity: '0.3' }}
-                onClick={algo == "Dijkstra" ? () => { dijkstra(); setVisualising(true) } : () => { aSearch(); setVisualising(true); }}>
+                onClick={algo == "BFS" ? () => { dijkstra(); setVisualising(true) } : () => { aSearch(); setVisualising(true); }}>
                 {visualised && <p>Done!</p>}
                 {
-                    visualizing && <p>Visualising! <br />
+                    visualizing && <p>Vizualizuji! <br />
                         <Blocks
                             visible={true}
                             height="20"
@@ -22,7 +22,7 @@ const Settings = ({ algo, dijkstra, aSearch, setVisualising, startNode, visualis
 
                         /></p>
                 }
-                {!visualizing && !visualised && <p>Visualise!</p>}
+                {!visualizing && !visualised && <p>Vizualizuj!</p>}
             </button>
             
             <button className='restartBtn' style={visualizing || visualised ? {} : {pointerEvents: 'none', opacity: '0.3'}} onClick={() => {setRestart(true); setBtnText("Restarting")}}>{btnText}</button>

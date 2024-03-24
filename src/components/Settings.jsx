@@ -34,8 +34,8 @@ const Settings = ({ pause, setPause, setTimer, setCount, play, sorted }) => {
             </div>
 
             <div className="count border" style={!play ? {} : {pointerEvents: 'none', opacity: 0.3}}>
-                <input className='inputBars' type="num" placeholder='Enter number of bars' style={{ border: 'none' }} />
-                <button className='createBars'  onClick={() => {{+document.querySelector(".inputBars").value > 3 ? setCount(document.querySelector(".inputBars").value) : alert("length must be 4+")} document.querySelector(".inputBars").value = ""} }>Create!</button>
+                <input className='inputBars' type="num" placeholder='Zadej počet barů' style={{ border: 'none' }} />
+                <button className='createBars'  onClick={() => {{+document.querySelector(".inputBars").value > 3 ? setCount(document.querySelector(".inputBars").value) : alert("length must be 4+")} document.querySelector(".inputBars").value = ""} }>Vytvoř</button>
             </div>
         </div>
     )

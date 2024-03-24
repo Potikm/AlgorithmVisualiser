@@ -22,9 +22,6 @@ const Dijkstra2 = ({startNodeId, endNode}) => {
     }, [])
 
 
-   useEffect(() => {
-    console.log(startNodeId)
-   }, [startNodeId])
 
     var passedNode = {
       node: "",
@@ -36,6 +33,17 @@ const Dijkstra2 = ({startNodeId, endNode}) => {
 
     async function visualiseDijkstra()
     {
+      var ids = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"]
+      console.log(startNodeId)
+      if (!ids.includes(startNodeId.toUpperCase())){
+        return;
+
+      }
+      if (!ids.includes(endNode.toUpperCase())){
+        return;
+
+      }
+
       var startNode = document.getElementById(startNodeId.toUpperCase())
       var passedNodes = [];
       var chart = []; 
@@ -72,6 +80,8 @@ const Dijkstra2 = ({startNodeId, endNode}) => {
         ...document.querySelectorAll(".pathCost")
      
       ]);
+
+     
      
       
 

@@ -785,7 +785,7 @@ const Grid = () => {
     <div className="pathFinder">
        
       <Navbar setAlgo={setAlgo} clearBoard={clearBoard}/> 
-      {algo !== "Dijkstra 2" ?
+      {algo !== "Dijkstra" ?
        <div className="nodeBtn">
          <button className='button' id='btnStart' onClick={() => {setChoosingFinal(false);setChoosingWall(false) }}>Start <div className="node startNode"></div></button>
          <button className='button' id='btnFinal' onClick={() => {setChoosingFinal(true);setChoosingWall(false) }}>Target <div className="node finalNode"></div></button>
@@ -794,16 +794,16 @@ const Grid = () => {
       :
        <div className="Input">
         <label htmlFor="">Z uzlu </label>
-        <input style={{width: "40px", textTransform: "uppercase"}} type="text" onChange={(e) => setStartNode2(e.target.value)}/>
+        <input id='start2' style={{width: "40px", textTransform: "uppercase"}} type="text" onChange={(e) => setStartNode2(e.target.value)}/>
         <label htmlFor=""> do uzlu </label>
-        <input style={{width: "40px", textTransform: "uppercase"}} type="text" onChange={(e) => setEndNode(e.target.value)}/>
+        <input id='end2' style={{width: "40px", textTransform: "uppercase"}} type="text" onChange={(e) => setEndNode(e.target.value)}/>
        </div>
       }
      
 
       <div className='algoName'>Algo: <div className='text'>{algo}</div></div>
 
-      {algo !== "Dijkstra 2" ? 
+      {algo !== "Dijkstra" ? 
       
       <div className='Grid'>
       
@@ -817,7 +817,7 @@ const Grid = () => {
       <Dijkstra2 startNodeId={startNode2} endNode={endNode}/>}
       
 
-      {algo !== "Dijkstra 2" ?
+      {algo !== "Dijkstra" ?
        <div className="buttons">
        <Settings algo={algo} dijkstra={dijkstra} aSearch={aSearch} setVisualising={setVisualising} clearBoard={clearBoard} btnText={btnText} setBtnText={setBtnText} setRestart={setRestart} startNode={startNode} visualised={visualised} visualizing={visualizing}/>
 

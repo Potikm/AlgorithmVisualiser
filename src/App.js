@@ -33,9 +33,7 @@ function App() {
 
 
 
-        <div className="creator">
-          <p> Made by <br /> <a href="https://github.com/Potikm">PotikM</a></p>
-        </div>
+    
       </div>
     </HashRouter>
   );

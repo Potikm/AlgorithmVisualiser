@@ -23,7 +23,7 @@ const Algos = () => {
     const [sorted, setSorted] = useState(false);
     const [spawn, setSpawn] = useState(false);
     const [reload, setReload] = useState(false);
-    const [btnText, setBtnText] = useState('Reload');
+    const [btnText, setBtnText] = useState('Nový');
     const [restart, setRestart] = useState(false);
     const [restartText, setRestartText] = useState('Restart');
     const [count, setCount] = useState(13);
@@ -52,7 +52,7 @@ const Algos = () => {
 
     useEffect(() => {
 
-        { reload ? setBtnText('Reloading') : setBtnText('Reload') }
+        { reload ? setBtnText('Reloading') : setBtnText('Nový') }
         { restart ? setRestartText('Restarting') : setRestartText('Restart') }
         setSorted(false);
 
@@ -107,11 +107,11 @@ const Algos = () => {
                 <h1 className='algoText'>{alghorithm}</h1>
 
 
-                {alghorithm === "" ? <h1>Choose the Algo ;)</h1> : <Bars alghorithm={alghorithm} key={alghorithm} play={play} setPlay={setPlay} pause={pause} timer={timer} setSorted={setSorted} spawn={spawn} setSpawn={setSpawn} reload={reload} setReload={setReload} setPause={setPause} restart={restart} setRestart={setRestart} count={count} />}
+                {alghorithm === "" ? <h1>Vyber algoritmus</h1> : <Bars alghorithm={alghorithm} key={alghorithm} play={play} setPlay={setPlay} pause={pause} timer={timer} setSorted={setSorted} spawn={spawn} setSpawn={setSpawn} reload={reload} setReload={setReload} setPause={setPause} restart={restart} setRestart={setRestart} count={count} />}
 
             </div>
             <div className="flex">
-                {alghorithm === "" ? null : <button className='playBtn' onClick={() => { setPlay(!play); setPause(false) }}>{play && !sorted && <p className='sortText'>Sorting...</p>} {!play && !sorted && <p className='sortText'>Sort!</p>} {sorted && <p className='sortText'>Sorted!</p>}</button>}
+                {alghorithm === "" ? null : <button className='playBtn' onClick={() => { setPlay(!play); setPause(false) }}>{play && !sorted && <p className='sortText'>Řadí se...</p>} {!play && !sorted && <p className='sortText'>Řaď</p>} {sorted && <p className='sortText'>Seřazeno</p>}</button>}
                 {alghorithm === "" ? null : <div className='underBtns'><button className='restartBtn' style={play || sorted ? {} : { pointerEvents: 'none', opacity: '0.3' }} onClick={() => setRestart(true)}>{restartText}</button> <button className='reloadBtn' onClick={() => setReload(true)}>{btnText}</button> </div>}
             </div>
             <Helper type={alghorithm} />

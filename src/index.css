@@ -125,7 +125,7 @@ code {
 
 .links {
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(2, auto);
   justify-content: center;
   align-items: center;
   position: absolute;
